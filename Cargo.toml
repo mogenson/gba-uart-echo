@@ -1,0 +1,15 @@
+[package]
+name = "gba-uart-echo"
+version = "0.1.0"
+authors = ["Michael Mogenson <michael.mogenson@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+#gba = { git = "https://github.com/rust-console/gba"}
+
+[profile.dev]
+panic = "abort"
+opt-level = 3
+
+[profile.release]
+panic = "abort"
