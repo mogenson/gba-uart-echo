@@ -5,11 +5,5 @@ authors = ["Michael Mogenson <michael.mogenson@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+panic-abort = "0.3.2"
 #gba = { git = "https://github.com/rust-console/gba"}
-
-[profile.dev]
-panic = "abort"
-opt-level = 3
-
-[profile.release]
-panic = "abort"
