@@ -1,0 +1,26 @@
+[config]
+skip_core_tasks = true
+
+[tasks.build]
+toolchain = "nightly"
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.rom]
+dependencies = ["build"]
+script = [
+'''
+arm-none-eabi-objcopy -O binary \
+    target/${CARGO_MAKE_CRATE_TARGET_TRIPLE}/release/${CARGO_MAKE_CRATE_NAME} \
+    target/${CARGO_MAKE_CRATE_NAME}.gba
+gbafix target/${CARGO_MAKE_CRATE_NAME}.gba
+'''
+]
+
+[tasks.mgba]
+dependencies = ["rom"]
+command = "mgba"
+args = ["target/${CARGO_MAKE_CRATE_NAME}.gba"]
+
+[tasks.default]
+alias = "rom"
